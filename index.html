@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24584f">
+  <title>راهنمای الکترونیکی بیمارستان کوثر سنندج</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- کتابخانه خواندن فایل Excel؛ برای واردکردن اکسل به اینترنت نیاز دارد -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#" aria-label="صفحه اصلی">
+        <div class="brand-mark" aria-hidden="true">ت</div>
+        <div>
+          <div class="brand-name">بیمارستان کوثر سنندج</div>
+          <div class="brand-subtitle">راهنمای بیماران و مراجعان</div>
+        </div>
+      </a>
+      <button class="menu-button" id="menuButton" aria-label="نمایش منو">☰</button>
+      <nav id="mainNav">
+        <a href="#home">صفحه اصلی</a>
+        <a href="#services">راهنمای خدمات</a>
+        <a href="#contact">تماس با ما</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">راهنمای مراجعه‌کنندگان</span>
+        <h1>برای دریافت خدمات بیمارستان،<br>راهنمای شما در دسترس است.</h1>
+        <p>اطلاعات موردنیاز برای مراجعه، پذیرش، بستری، آشنایی با بخش‌ها و ارتباط با واحدهای بیمارستان را در اینجا پیدا کنید.</p>
+        <a class="primary-link" href="#services">مشاهده راهنمای بیمارستان <span>←</span></a>
+      </div>
+      <div class="hero-symbol" aria-hidden="true">
+        <div class="cross">+</div>
+        <div class="symbol-caption">KOSAR<br><small>HOSPITAL GUIDE</small></div>
+      </div>
+    </section>
+
+    <section class="notice" aria-label="اطلاعیه">
+      <span class="notice-icon">i</span>
+      <p><strong>توجه:</strong> اطلاعات این راهنما ممکن است با تغییر مقررات یا برنامه واحدها به‌روزرسانی شود. پیش از مراجعه، اطلاعات ضروری را از واحد مربوطه تأیید کنید.</p>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">دسترسی سریع</span>
+          <h2>چه اطلاعاتی نیاز دارید؟</h2>
+          <p>موضوع موردنظر را انتخاب کنید یا در فهرست زیر جست‌وجو کنید.</p>
+        </div>
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="جست‌وجو در راهنمای بیمارستان..." autocomplete="off">
+        </label>
+      </div>
+      <div id="categoryFilters" class="filters" aria-label="دسته‌بندی اطلاعات"></div>
+      <div id="guideGrid" class="guide-grid" aria-live="polite"></div>
+      <p id="emptyState" class="empty-state" hidden>موردی با این عبارت پیدا نشد.</p>
+    </section>
+
+    <section class="help-band">
+      <div>
+        <span class="eyebrow">نیاز به راهنمایی دارید؟</span>
+        <h2>برای اطلاعات بیشتر با بیمارستان تماس بگیرید.</h2>
+        <p>شماره تماس و راه‌های ارتباطی معتبر را از بخش تماس با ما مشاهده کنید.</p>
+      </div>
+      <a href="#contact" class="light-link">اطلاعات تماس <span>←</span></a>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ارتباط با بیمارستان</span>
+          <h2>تماس با ما</h2>
+          <p>اطلاعات تماس پس از تکمیل فایل اکسل در این قسمت نمایش داده می‌شود.</p>
+        </div>
+      </div>
+      <div id="contactCards" class="contact-grid"></div>
+    </section>
+
+    <section class="admin-panel" id="adminPanel">
+      <details>
+        <summary>مدیریت محتوا و بارگذاری فایل اکسل</summary>
+        <div class="admin-content">
+          <p>برای جایگزینی اطلاعات نمونه با اطلاعات تأییدشده بیمارستان، فایل اکسل تکمیل‌شده را انتخاب کنید. فایل باید مطابق قالب نمونه و دارای برگه «اطلاعات» باشد.</p>
+          <div class="upload-row">
+            <input type="file" id="excelFile" accept=".xlsx,.xls">
+            <button id="importButton" class="admin-button">بارگذاری اطلاعات</button>
+          </div>
+          <p id="importStatus" class="import-status" role="status">اطلاعات فعلی، نمونه نمایشی هستند و باید با داده‌های تأییدشده جایگزین شوند.</p>
+          <button id="resetButton" class="text-button">بازگشت به اطلاعات نمونه</button>
+          <p class="admin-note">نکته: این روش برای انتشار عمومی، فایل اکسل را در مرورگر مدیر می‌خواند و اطلاعات را در همان مرورگر نگه می‌دارد. برای انتشار تغییرات برای همه کاربران، خروجی JSON باید جایگزین فایل <code>data.json</code> روی میزبان سایت شود؛ راهنمای این کار در فایل راهنما آمده است.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>بیمارستان کوثر سنندج</strong>
+        <p>راهنمای الکترونیکی بیماران و مراجعان</p>
+      </div>
+      <span>اطلاعات این وب‌سایت باید توسط واحدهای مسئول تأیید و به‌روزرسانی شود.</span>
+    </div>
+  </footer>
+
+  <dialog id="detailDialog" class="detail-dialog">
+    <button class="dialog-close" id="dialogClose" aria-label="بستن">×</button>
+    <div id="dialogBody"></div>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
