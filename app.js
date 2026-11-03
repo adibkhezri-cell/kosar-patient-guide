@@ -417,7 +417,7 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fa = n => Number(n).toLocaleString("fa-IR");
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
-const ICON_IDS = ["bed","clinic","clock","flask","exit","scales","home","phone","card","bottle","plus","pin","swap","qr","map","route","ambulance","clip","check","stairs","lift"];
+const ICON_IDS = ["bed","clinic","clock","flask","exit","scales","home","phone","card","bottle","plus","pin","swap","qr","map","clip","check","stairs","lift"];
 function iconHtml(k){
   k = String(k || "").trim();
   if (ICON_IDS.includes(k)) return `<svg class="ico" aria-hidden="true"><use href="#i-${k}"/></svg>`;
